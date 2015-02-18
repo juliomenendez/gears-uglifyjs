@@ -1,4 +1,4 @@
-var uglify = require('uglify-js'),
+var UglifyJS = require('uglify-js'),
     source = '';
 
 process.stdin.resume();
@@ -9,5 +9,6 @@ process.stdin.on('data', function(chunk) {
 });
 
 process.stdin.on('end', function() {
-  process.stdout.write(uglify(source));
+  var result = UglifyJS.minify(source, {fromString: true});
+  process.stdout.write(result.code);
 });
